@@ -10,11 +10,11 @@ from qtpy.QtWidgets import (
 
 
 class WindowDragger(QWidget):
-    """ Window dragger.
+    """Window dragger.
 
-        Args:
-            window (QWidget): Associated window.
-            parent (QWidget, optional): Parent widget.
+    Args:
+        window (QWidget): Associated window.
+        parent (QWidget, optional): Parent widget.
     """
 
     doubleClicked = Signal()
@@ -42,11 +42,11 @@ class WindowDragger(QWidget):
 
 
 class ModernWindow(QWidget):
-    """ Modern window.
+    """Modern window.
 
-        Args:
-            w (QWidget): Main widget.
-            parent (QWidget, optional): Parent widget.
+    Args:
+        w (QWidget): Main widget.
+        parent (QWidget, optional): Parent widget.
     """
 
     def __init__(self, w, parent=None):
@@ -74,41 +74,39 @@ class ModernWindow(QWidget):
         self.vboxWindow.setContentsMargins(0, 0, 0, 0)
 
         self.windowFrame = QWidget(self)
-        self.windowFrame.setObjectName('windowFrame')
+        self.windowFrame.setObjectName("windowFrame")
 
         self.vboxFrame = QVBoxLayout(self.windowFrame)
         self.vboxFrame.setContentsMargins(0, 0, 0, 0)
 
         self.titleBar = WindowDragger(self, self.windowFrame)
-        self.titleBar.setObjectName('titleBar')
-        self.titleBar.setSizePolicy(
-            QSizePolicy(QSizePolicy.Preferred, QSizePolicy.Fixed)
-        )
+        self.titleBar.setObjectName("titleBar")
+        self.titleBar.setSizePolicy(QSizePolicy(QSizePolicy.Preferred, QSizePolicy.Fixed))
 
         self.hboxTitle = QHBoxLayout(self.titleBar)
         self.hboxTitle.setContentsMargins(0, 0, 0, 0)
         self.hboxTitle.setSpacing(0)
 
-        self.lblTitle = QLabel('Title')
-        self.lblTitle.setObjectName('lblTitle')
+        self.lblTitle = QLabel("Title")
+        self.lblTitle.setObjectName("lblTitle")
         self.lblTitle.setAlignment(Qt.AlignCenter)
 
         spButtons = QSizePolicy(QSizePolicy.Fixed, QSizePolicy.Fixed)
 
         self.btnMinimize = QToolButton(self.titleBar)
-        self.btnMinimize.setObjectName('btnMinimize')
+        self.btnMinimize.setObjectName("btnMinimize")
         self.btnMinimize.setSizePolicy(spButtons)
 
         self.btnRestore = QToolButton(self.titleBar)
-        self.btnRestore.setObjectName('btnRestore')
+        self.btnRestore.setObjectName("btnRestore")
         self.btnRestore.setSizePolicy(spButtons)
 
         self.btnMaximize = QToolButton(self.titleBar)
-        self.btnMaximize.setObjectName('btnMaximize')
+        self.btnMaximize.setObjectName("btnMaximize")
         self.btnMaximize.setSizePolicy(spButtons)
 
         self.btnClose = QToolButton(self.titleBar)
-        self.btnClose.setObjectName('btnClose')
+        self.btnClose.setObjectName("btnClose")
         self.btnClose.setSizePolicy(spButtons)
 
         self.vboxFrame.addWidget(self.titleBar)
@@ -151,10 +149,10 @@ class ModernWindow(QWidget):
             event.setAccepted(self._w.isHidden())
 
     def setWindowTitle(self, title):
-        """ Set window title.
+        """Set window title.
 
-            Args:
-                title (str): Title.
+        Args:
+            title (str): Title.
         """
 
         super(ModernWindow, self).setWindowTitle(title)

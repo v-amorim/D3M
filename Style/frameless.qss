@@ -11,7 +11,10 @@
   height: 24px;
 }
 
-#btnClose, #btnRestore, #btnMaximize, #btnMinimize {
+#btnClose,
+#btnRestore,
+#btnMaximize,
+#btnMinimize {
   min-width: 14px;
   min-height: 14px;
   max-width: 14px;
@@ -20,15 +23,18 @@
   margin: 4px;
 }
 
-#btnRestore, #btnMaximize {
+#btnRestore,
+#btnMaximize {
   background-color: hsv(123, 204, 198);
 }
 
-#btnRestore::hover, #btnMaximize::hover {
+#btnRestore::hover,
+#btnMaximize::hover {
   background-color: hsv(123, 204, 148);
 }
 
-#btnRestore::pressed, #btnMaximize::pressed {
+#btnRestore::pressed,
+#btnMaximize::pressed {
   background-color: hsv(123, 204, 98);
 }
 
@@ -56,10 +62,13 @@
   background-color: hsv(0, 182, 152);
 }
 
-#btnClose::disabled, #btnRestore::disabled, #btnMaximize::disabled, #btnMinimize::disabled {
+#btnClose::disabled,
+#btnRestore::disabled,
+#btnMaximize::disabled,
+#btnMinimize::disabled {
   background-color: palette(midlight);
 }
 
 QGroupBox {
-    font-weight: bold;
+  font-weight: bold;
 }
