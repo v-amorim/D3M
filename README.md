@@ -1,7 +1,11 @@
 # D3M
 
-A Diablo III Macro Collection.
-The Macros work on all Resolutions.
+A Diablo III Macro Collection, forked from [mfroeh](https://github.com/mfroeh/Eule.py), thank you for your nice software!
+
+Main selling points of this version: compact and only the tools I personally found useful.
+
+![image](https://github.com/v-amorim/D3M/assets/629036/38ccd257-1295-4a90-a5ac-96e09b9d21f5)
+
 
 ## Macros
 
