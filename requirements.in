@@ -3,3 +3,4 @@ qtpy
 pyqt5
 kthread
 pip-tools
+pre-commit
