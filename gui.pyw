@@ -23,8 +23,8 @@ import os
 import string
 import keyboard
 import Style.windows as windows
-from utils import hotkey_delete_request, hotkey_is_numlock, nicer_text
-from utils import DIABLO_WIN
+from resources import hotkey_delete_request, hotkey_is_numlock, nicer_text
+from resources import DIABLO_WIN
 import resources
 from time import sleep
 from settings import Settings

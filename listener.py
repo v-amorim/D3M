@@ -14,10 +14,8 @@ except AttributeError:
 class Listener:
     def __init__(self, settings):
         self.settings = settings
-
         self.thread = KThread(target=lambda: keyboard.wait("a+r+b+i+t+r+a+r+y"))
         self.thread.start()
-
         self.start()
 
     def start(self):
@@ -101,6 +99,4 @@ class Listener:
         self.stop()
         keyboard.add_hotkey(self.settings.hotkeys["pause"], self.pause, suppress=True)
         self.gui_paused.setChecked(True)
-        [t.stop() for t in macros.timers]
-        macros.timers = []
         macros.is_running = False

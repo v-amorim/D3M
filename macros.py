@@ -1,19 +1,18 @@
 import contextlib
-from threading import Timer
 from time import sleep
 
 import keyboard
 import win32api
 import win32gui
 
+from resources import DIABLO_WIN
 from resources import kadala_item_by_name
 from resources import kadala_tab_by_name
 from resources import map_act_coords_by_act
 from resources import map_town_coords_by_act
-from sends import send_key
-from sends import send_mouse
-from utils import DIABLO_WIN
-from utils import transform_coordinates
+from resources import send_key
+from resources import send_mouse
+from resources import transform_coordinates
 
 
 def cube_conv(speed, is_large_slot):
@@ -75,12 +74,12 @@ def upgrade_gem(empowered, choose_gem):
     def enchant_loop(times):
         for _ in range(times):
             send_mouse(DIABLO_WIN, "LM", upgrade[0], upgrade[1])
-            sleep(1.55)
+            macro_sleep(1.55)
 
     if not choose_gem:
         first_gem = transform_coordinates(DIABLO_WIN, 100, 640)
         send_mouse(DIABLO_WIN, "LM", first_gem[0], first_gem[1])
-        sleep(0.05)
+        macro_sleep(0.05)
 
     with contextlib.suppress(StopMacro):
         enchant_loop(2)
@@ -179,11 +178,6 @@ def gamble(item):
         send_mouse(DIABLO_WIN, "RM", item[0], item[1])
 
 
-# cant pause this via the regular pause hotkey for now
-is_running = False
-timers = []
-
-
 class StopMacro(Exception):
     pass
 
@@ -194,29 +188,3 @@ def macro_sleep(time):
             raise StopMacro
         else:
             sleep(0.008)
-
-
-class RepeatedTimer:
-    def __init__(self, interval, function, *args, **kwargs):
-        self._timer = None
-        self.interval = interval
-        self.function = function
-        self.args = args
-        self.kwargs = kwargs
-        self.is_running = False
-
-    def _run(self):
-        self.is_running = False
-        self.start()
-        self.function(*self.args, **self.kwargs)
-
-    def start(self):
-        if not self.is_running:
-            self._timer = Timer(self.interval, self._run)
-            self._timer.start()
-            self.is_running = True
-
-    def stop(self):
-        self._timer.cancel()
-        self.is_running = False
-        print("stopping timers")

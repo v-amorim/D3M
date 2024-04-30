@@ -1,3 +1,11 @@
+import keyboard
+import win32api
+import win32con
+import win32gui
+
+DIABLO_WIN = win32gui.FindWindow("D3 Main Window Class", "Diablo III")
+
+
 def key_to_hex(key):
     switcher = {
         "0": 0x30,
@@ -127,3 +135,68 @@ def kadala_tab_by_name(item):
         **dict.fromkeys(["ring", "amulet"], (515, 480)),
     }
     return switcher.get(item, (0, 0))
+
+
+# Transforms from 1920 x 1080 Base
+# Works for all 16 / 9 Resolutions
+def transform_coordinates(handle, x, y, rel="left"):
+    x1, y1, x2, y2 = win32gui.GetClientRect(handle)  # win32gui.GetWindowRect(handle)
+    w = x2 - x1
+    h = y2 - y1
+
+    if rel == "left":
+        new_x = int((h / 1080) * x)
+    elif rel == "right":
+        new_x = int(w - (1920 - x) * h / 1080)
+    else:
+        new_x = int(x * h / 1080 + (w - 1920 * h / 1080) / 2)
+    new_y = int((h / 1080) * y)
+
+    return (new_x, new_y)
+
+
+def hotkey_delete_request(hotkey):
+    try:
+        scan_codes = keyboard.key_to_scan_codes(hotkey)
+        return scan_codes[0] == 83
+    except Exception:
+        return False
+
+
+def hotkey_is_numlock(hotkey):
+    try:
+        scan_code = keyboard.key_to_scan_codes(hotkey)[1]
+        return scan_code in [71, 72, 73, 75, 76, 77, 79, 80, 81, 82]
+    except Exception:
+        return False
+
+
+def nicer_text(hotkey):
+    switcher = {
+        82: "Num0",
+        79: "Num1",
+        80: "Num2",
+        81: "Num3",
+        75: "Num4",
+        76: "Num5",
+        77: "Num6",
+        71: "Num7",
+        72: "Num8",
+        73: "Num9",
+    }
+    return switcher.get(hotkey, hotkey)
+
+
+def send_key(handle, key):
+    win32api.PostMessage(handle, win32con.WM_KEYDOWN, key_to_hex(key), 0)
+    win32api.PostMessage(handle, win32con.WM_KEYUP, key_to_hex(key), 0)
+
+
+def send_mouse(handle, key, x, y):
+    lParam = y << 16 | x
+    if key == "LM":
+        win32api.PostMessage(handle, win32con.WM_LBUTTONDOWN, win32con.MK_LBUTTON, lParam)
+        win32api.PostMessage(handle, win32con.WM_LBUTTONUP, 0, lParam)
+    elif key == "RM":
+        win32api.PostMessage(handle, win32con.WM_RBUTTONDOWN, win32con.MK_RBUTTON, lParam)
+        win32api.PostMessage(handle, win32con.WM_RBUTTONUP, 0, lParam)
