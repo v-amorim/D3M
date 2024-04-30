@@ -4,7 +4,8 @@ A Diablo III Macro Collection, forked from [mfroeh](https://github.com/mfroeh/Eu
 
 Main selling points of this version: compact and only the tools I personally found useful, also changed some of the macros to work better (eg: Upgrade Gem)
 
-![image](https://github.com/v-amorim/D3M/assets/629036/38ccd257-1295-4a90-a5ac-96e09b9d21f5)
+![image](https://github.com/v-amorim/D3M/assets/629036/84dcf60c-8e07-485d-9cff-d067c6f1279b)
+
 
 ## Macros
 
