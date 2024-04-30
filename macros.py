@@ -91,11 +91,15 @@ def upgrade_gem(empowered, choose_gem):
 
 
 def salvage(spare_columns):
-    menu = transform_coordinates(DIABLO_WIN, 517, 480)
+    menu = transform_coordinates(DIABLO_WIN, 515, 480)
+    repair = transform_coordinates(DIABLO_WIN, 515, 615)
+    all_items = transform_coordinates(DIABLO_WIN, 260, 600)
     anvil = transform_coordinates(DIABLO_WIN, 165, 295)
     item = transform_coordinates(DIABLO_WIN, 1875, 585, rel="right")
     step = transform_coordinates(DIABLO_WIN, 50, 50)
 
+    send_mouse(DIABLO_WIN, "LM", repair[0], repair[1])  # Repair Menu
+    send_mouse(DIABLO_WIN, "LM", all_items[0], all_items[1])  # Click "All Items"
     send_mouse(DIABLO_WIN, "LM", menu[0], menu[1])  # Salvage Menu
     send_mouse(DIABLO_WIN, "LM", anvil[0], anvil[1])  # Click Salvage Button
     for i in range(6):

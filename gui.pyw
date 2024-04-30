@@ -205,7 +205,7 @@ class HotkeyTab(QWidget):
         self.layout.addWidget(after_rift, 0, 1)
 
         label = QLabel(after_rift)
-        label.setText("Salvage")
+        label.setText("Repair & Salvage")
         after_rift_layout.addWidget(label, 0, 0)
         button = QPushButton(after_rift)
         self.buttons["salvage"] = button
