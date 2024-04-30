@@ -1,6 +1,7 @@
 keyboard
-qtpy
-pyqt5
 kthread
 pip-tools
 pre-commit
+pyinstaller
+pyqt5
+qtpy
