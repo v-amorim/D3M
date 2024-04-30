@@ -43,7 +43,7 @@ class MainWindow(QMainWindow):
         super().__init__()
         self.settings = settings
         self.listener = listener
-        self.setWindowTitle("D3M")
+        self.setWindowTitle("D3M (Hover macros for tooltips!)")
         self.table_widget = TableWidget(self)
         self.setCentralWidget(self.table_widget)
         self.locate_to_center()
@@ -81,23 +81,32 @@ class TableWidget(QWidget):
         self.hotkey_tab = HotkeyTab(parent)
 
         self.tabs.addTab(self.hotkey_tab, "Hotkeys")
-        self.layout.addWidget(self.tabs, 0, 0, 1, 3)
+        self.layout.addWidget(self.tabs, 0, 0, 1, 4)
 
         self.diablo_hooked = QCheckBox(self)
         self.diablo_hooked.setText("Diablo hooked")
+        self.diablo_hooked.setToolTip("Shows if the macro is hooked to Diablo III Process")
         self.diablo_hooked.setDisabled(True)
         self.layout.addWidget(self.diablo_hooked, 2, 0)
 
         self.d3m_paused = QCheckBox(self)
         self.d3m_paused.setText("D3M paused")
+        self.d3m_paused.setToolTip("Shows if the macro is paused")
         self.d3m_paused.setDisabled(True)
         self.layout.addWidget(self.d3m_paused, 2, 1)
         self.listener.gui_paused = self.d3m_paused
 
         label = QLabel(self)
-        label.setText('<a href="https://github.com/VocalTrance/Eule.py">Github Credits</a>')
+        label.setText('<a href="https://github.com/v-amorim/D3M">D3M Github</a>')
+        label.setToolTip("v-amorim fork, better :>")
         label.setOpenExternalLinks(True)
         self.layout.addWidget(label, 2, 2)
+
+        label = QLabel(self)
+        label.setText('<a href="https://github.com/mfroeh/Eule.py">Original Github</a>')
+        label.setToolTip("mfroeh original Version")
+        label.setOpenExternalLinks(True)
+        self.layout.addWidget(label, 2, 3)
 
         self.setLayout(self.layout)
 
@@ -120,6 +129,7 @@ class HotkeyTab(QWidget):
 
         label = QLabel(general)
         label.setText("Pause Macros")
+        label.setToolTip("Pause all macros from working")
         general_layout.addWidget(label, 0, 0)
         button = QPushButton(general)
         self.buttons["pause"] = button
@@ -129,6 +139,7 @@ class HotkeyTab(QWidget):
 
         label = QLabel(general)
         label.setText("Leave Game")
+        label.setToolTip("Leave the current game (character screen)")
         general_layout.addWidget(label, 1, 0)
         button = QPushButton(general)
         self.buttons["leave_game"] = button
@@ -138,6 +149,7 @@ class HotkeyTab(QWidget):
 
         label = QLabel(general)
         label.setText("Normalize Difficulty")
+        label.setToolTip("Set the difficulty down to Normal")
         general_layout.addWidget(label, 2, 0)
         button = QPushButton(general)
         self.buttons["lower_difficulty"] = button
@@ -149,11 +161,12 @@ class HotkeyTab(QWidget):
 
         porting = QGroupBox(self)
         porting_layout = QGridLayout(porting)
-        porting.setTitle("Porting")
+        porting.setTitle("Teleporting")
         self.layout.addWidget(porting, 1, 0)
 
         label = QLabel(porting)
-        label.setText("Port to A1 Town")
+        label.setText("To Act 1 Town")
+        label.setToolTip("Teleports you to Act 1 Town")
         porting_layout.addWidget(label, 0, 0)
         button = QPushButton(porting)
         self.buttons["port_a1"] = button
@@ -162,7 +175,8 @@ class HotkeyTab(QWidget):
         porting_layout.addWidget(button, 0, 1)
 
         label = QLabel(porting)
-        label.setText("Port to A2 Town")
+        label.setText("To Act 2 Town")
+        label.setToolTip("Teleports you to Act 2 Town")
         porting_layout.addWidget(label, 1, 0)
         button = QPushButton(porting)
         self.buttons["port_a2"] = button
@@ -171,7 +185,8 @@ class HotkeyTab(QWidget):
         porting_layout.addWidget(button, 1, 1)
 
         label = QLabel(porting)
-        label.setText("Port to A3 Town")
+        label.setText("To Act 3 Town")
+        label.setToolTip("Teleports you to Act 3 Town")
         porting_layout.addWidget(label, 2, 0)
         button = QPushButton(porting)
         self.buttons["port_a3"] = button
@@ -180,7 +195,8 @@ class HotkeyTab(QWidget):
         porting_layout.addWidget(button, 2, 1)
 
         label = QLabel(porting)
-        label.setText("Port to A4 Town")
+        label.setText("To Act 4 Town")
+        label.setToolTip("Teleports you to Act 4 Town")
         porting_layout.addWidget(label, 3, 0)
         button = QPushButton(porting)
         self.buttons["port_a4"] = button
@@ -189,7 +205,8 @@ class HotkeyTab(QWidget):
         porting_layout.addWidget(button, 3, 1)
 
         label = QLabel(porting)
-        label.setText("Port to A5 Town")
+        label.setText("To Act 5 Town")
+        label.setToolTip("Teleports you to Act 5 Town")
         porting_layout.addWidget(label, 4, 0)
         button = QPushButton(porting)
         self.buttons["port_a5"] = button
@@ -206,6 +223,7 @@ class HotkeyTab(QWidget):
 
         label = QLabel(after_rift)
         label.setText("Repair & Salvage")
+        label.setToolTip("Repair items and salvage all items in inventory\n(CAREFUL, use 'Spare Columns' if needed)")
         after_rift_layout.addWidget(label, 0, 0)
         button = QPushButton(after_rift)
         self.buttons["salvage"] = button
@@ -215,6 +233,7 @@ class HotkeyTab(QWidget):
 
         label = QLabel(after_rift)
         label.setText("Drop Inventory")
+        label.setToolTip("Drops all items in inventory\n(CAREFUL, use 'Spare Columns' if needed)")
         after_rift_layout.addWidget(label, 1, 0)
         button = QPushButton(after_rift)
         self.buttons["drop_inventory"] = button
@@ -224,6 +243,7 @@ class HotkeyTab(QWidget):
 
         label = QLabel(after_rift)
         label.setText("Spare Columns")
+        label.setToolTip("Set the amount of columns to spare from both macros above\nStarts from left corner")
         after_rift_layout.addWidget(label, 2, 0)
         spinbox = QSpinBox(after_rift)
         spinbox.setMinimum(0)
@@ -231,15 +251,6 @@ class HotkeyTab(QWidget):
         spinbox.setValue(self.settings.special["spare_columns"])
         spinbox.valueChanged.connect(self.spinbox_changed)
         after_rift_layout.addWidget(spinbox, 2, 1)
-
-        label = QLabel(after_rift)
-        label.setText("Gamble")
-        after_rift_layout.addWidget(label, 3, 0)
-        button = QPushButton(after_rift)
-        self.buttons["gamble"] = button
-        button.setText(nicer_text(self.settings.hotkeys["gamble"]))
-        button.clicked.connect(lambda: self.set_hotkey("gamble"))
-        after_rift_layout.addWidget(button, 3, 1)
 
         ######################
 
@@ -250,48 +261,45 @@ class HotkeyTab(QWidget):
 
         label = QLabel(cube_converter)
         label.setText("Reforge / Convert Set")
-        cube_converter_layout.addWidget(label, 0, 0, 1, 3)
+        label.setToolTip("Reforge / Converts the leftmost item\nChange pages to fit")
+        cube_converter_layout.addWidget(label, 0, 0)
         button = QPushButton(cube_converter)
         self.buttons["reforge"] = button
         button.setText(nicer_text(self.settings.hotkeys["reforge"]))
         button.clicked.connect(lambda: self.set_hotkey("reforge"))
-        cube_converter_layout.addWidget(button, 0, 3, 1, 3)
+        cube_converter_layout.addWidget(button, 0, 1)
 
         label = QLabel(cube_converter)
         label.setText("Convert 1-Slot")
-        cube_converter_layout.addWidget(label, 1, 0, 1, 3)
+        label.setToolTip("Spam all inventory 1-Slot items on recipe\nChange pages to fit")
+        cube_converter_layout.addWidget(label, 1, 0)
         button = QPushButton(cube_converter)
         self.buttons["cube_conv_sm"] = button
         button.setText(nicer_text(self.settings.hotkeys["cube_conv_sm"]))
         button.clicked.connect(lambda: self.set_hotkey("cube_conv_sm"))
-        cube_converter_layout.addWidget(button, 1, 3, 1, 3)
+        cube_converter_layout.addWidget(button, 1, 1)
 
         label = QLabel(cube_converter)
         label.setText("Convert 2-Slot")
-        cube_converter_layout.addWidget(label, 2, 0, 1, 3)
+        label.setToolTip("Spam all inventory 2-Slot items on recipe\nChange pages to fit")
+        cube_converter_layout.addWidget(label, 2, 0)
         button = QPushButton(cube_converter)
         self.buttons["cube_conv_lg"] = button
         button.setText(nicer_text(self.settings.hotkeys["cube_conv_lg"]))
         button.clicked.connect(lambda: self.set_hotkey("cube_conv_lg"))
-        cube_converter_layout.addWidget(button, 2, 3, 1, 3)
-
-        radio = QRadioButton(cube_converter)
-        radio.setText("SoL")
-        radio.setChecked(self.settings.special["cube_conv_speed"] == "sol")
-        radio.clicked.connect(lambda: self.radio_clicked("sol"))
-        cube_converter_layout.addWidget(radio, 3, 0, 1, 2)
-
-        radio = QRadioButton(cube_converter)
-        radio.setText("Normal")
-        radio.setChecked(self.settings.special["cube_conv_speed"] == "normal")
-        radio.clicked.connect(lambda: self.radio_clicked("normal"))
-        cube_converter_layout.addWidget(radio, 3, 2, 1, 2)
+        cube_converter_layout.addWidget(button, 2, 1)
 
         radio = QRadioButton(cube_converter)
         radio.setText("Slow")
         radio.setChecked(self.settings.special["cube_conv_speed"] == "slow")
         radio.clicked.connect(lambda: self.radio_clicked("slow"))
-        cube_converter_layout.addWidget(radio, 3, 4, 1, 2)
+        cube_converter_layout.addWidget(radio, 3, 0)
+
+        radio = QRadioButton(cube_converter)
+        radio.setText("Normal")
+        radio.setChecked(self.settings.special["cube_conv_speed"] == "normal")
+        radio.clicked.connect(lambda: self.radio_clicked("normal"))
+        cube_converter_layout.addWidget(radio, 3, 1)
 
         ####################
 
@@ -301,7 +309,8 @@ class HotkeyTab(QWidget):
         self.layout.addWidget(greater_rift, 0, 2)
 
         label = QLabel(greater_rift)
-        label.setText("Open Grift")
+        label.setText("Open Greater Rift")
+        label.setToolTip("Opens the Greater Rift on the currently selected Level")
         greater_rift_layout.addWidget(label, 0, 0)
         button = QPushButton(greater_rift)
         self.buttons["open_gr"] = button
@@ -311,6 +320,7 @@ class HotkeyTab(QWidget):
 
         label = QLabel(greater_rift)
         label.setText("Upgrade Gem")
+        label.setToolTip("Uses all upgrades on a gem and teleports you back")
         greater_rift_layout.addWidget(label, 1, 0)
         button = QPushButton(greater_rift)
         self.buttons["upgrade_gem"] = button
@@ -325,8 +335,8 @@ class HotkeyTab(QWidget):
         greater_rift_layout.addWidget(checkbox, 2, 0)
 
         checkbox = QCheckBox(greater_rift)
-        checkbox.setText("Choose Gem to upgrade")
-        checkbox.setToolTip("If checked, will upgrade the gem currently selected.")
+        checkbox.setText("Choose Gem?")
+        checkbox.setToolTip("If checked, upgrades the selected gem\nIf not selected, upgrades the leftmost gem")
         checkbox.stateChanged.connect(lambda: self.checkbox_clicked("choose_gem"))
         checkbox.setChecked(self.settings.special["choose_gem"])
         greater_rift_layout.addWidget(checkbox, 2, 1)
@@ -334,9 +344,19 @@ class HotkeyTab(QWidget):
         ######################
 
         gamble_item = QGroupBox(self)
-        gamble_item.setTitle("Gamble Item")
+        gamble_item.setTitle("Kadala Gamble")
         gamble_item_layout = QGridLayout(gamble_item)
         self.layout.addWidget(gamble_item, 1, 2)
+
+        label = QLabel(gamble_item)
+        label.setText("Gamble Item")
+        label.setToolTip("Spend Blood Shards on Kadala for the selected item type")
+        gamble_item_layout.addWidget(label, 0, 0)
+        button = QPushButton(gamble_item)
+        self.buttons["gamble"] = button
+        button.setText(nicer_text(self.settings.hotkeys["gamble"]))
+        button.clicked.connect(lambda: self.set_hotkey("gamble"))
+        gamble_item_layout.addWidget(button, 0, 1)
 
         self.gamble_item_list = QListWidget(gamble_item)
         self.gamble_item_list.setSelectionMode(QListWidget.SingleSelection)
@@ -347,7 +367,7 @@ class HotkeyTab(QWidget):
             if _item == self.settings.special["gamble_item"]:
                 item.setSelected(True)
         self.gamble_item_list.itemSelectionChanged.connect(self.update_gamble_item)
-        gamble_item_layout.addWidget(self.gamble_item_list)
+        gamble_item_layout.addWidget(self.gamble_item_list, 1, 0, 1, 2)
 
         self.setLayout(self.layout)
 
