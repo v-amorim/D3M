@@ -49,8 +49,6 @@ def cube_conv(speed, is_large_slot):
             kanais_cube_conversion(is_large_slot, 0.13, 0.1, 0.13, 0.1)
         elif speed == "normal":
             kanais_cube_conversion(is_large_slot, 0.13, 0.0, 0.13, 0.0)
-        elif speed == "sol":
-            kanais_cube_conversion(is_large_slot, 0.06, 0.0, 0.06, 0.0)
 
 
 def reforge():
