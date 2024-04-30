@@ -1,5 +1,6 @@
 import win32api
 import win32con
+
 from resources import key_to_hex
 
 

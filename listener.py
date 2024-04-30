@@ -1,7 +1,9 @@
-import keyboard
-import macros
-from kthread import KThread
 import sys
+
+import keyboard
+from kthread import KThread
+
+import macros
 
 try:
     wd = sys._MEIPASS

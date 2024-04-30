@@ -1,12 +1,13 @@
-from qtpy.QtCore import Qt, QMetaObject, Signal, Slot
-from qtpy.QtWidgets import (
-    QWidget,
-    QVBoxLayout,
-    QHBoxLayout,
-    QToolButton,
-    QLabel,
-    QSizePolicy,
-)
+from qtpy.QtCore import QMetaObject
+from qtpy.QtCore import Qt
+from qtpy.QtCore import Signal
+from qtpy.QtCore import Slot
+from qtpy.QtWidgets import QHBoxLayout
+from qtpy.QtWidgets import QLabel
+from qtpy.QtWidgets import QSizePolicy
+from qtpy.QtWidgets import QToolButton
+from qtpy.QtWidgets import QVBoxLayout
+from qtpy.QtWidgets import QWidget
 
 
 class WindowDragger(QWidget):
@@ -155,7 +156,7 @@ class ModernWindow(QWidget):
             title (str): Title.
         """
 
-        super(ModernWindow, self).setWindowTitle(title)
+        super().setWindowTitle(title)
         self.lblTitle.setText(title)
 
     def _setWindowButtonState(self, hint, state):

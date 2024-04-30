@@ -1,18 +1,19 @@
 import contextlib
+from threading import Timer
+from time import sleep
+
+import keyboard
 import win32api
 import win32gui
-from time import sleep
-from sends import send_mouse, send_key
-import keyboard
-from utils import transform_coordinates
+
+from resources import kadala_item_by_name
+from resources import kadala_tab_by_name
+from resources import map_act_coords_by_act
+from resources import map_town_coords_by_act
+from sends import send_key
+from sends import send_mouse
 from utils import DIABLO_WIN
-from resources import (
-    map_act_coords_by_act,
-    map_town_coords_by_act,
-    kadala_tab_by_name,
-    kadala_item_by_name,
-)
-from threading import Timer
+from utils import transform_coordinates
 
 
 def cube_conv(speed, is_large_slot):
@@ -193,7 +194,7 @@ def macro_sleep(time):
             sleep(0.008)
 
 
-class RepeatedTimer(object):
+class RepeatedTimer:
     def __init__(self, interval, function, *args, **kwargs):
         self._timer = None
         self.interval = interval

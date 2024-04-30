@@ -1,10 +1,11 @@
 import contextlib
-import os
-import psutil
-from time import sleep
-import win32gui
 import ctypes
+import os
+from time import sleep
+
 import keyboard
+import psutil
+import win32gui
 
 DIABLO_WIN = win32gui.FindWindow("D3 Main Window Class", "Diablo III")
 
