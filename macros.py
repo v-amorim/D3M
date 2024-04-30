@@ -58,10 +58,10 @@ def reforge():
     fw = transform_coordinates(DIABLO_WIN, 850, 850)
 
     send_mouse(DIABLO_WIN, "RM", item[0], item[1])  # Item
-    sleep(0.1)
+    macro_sleep(0.1)
     send_mouse(DIABLO_WIN, "LM", fill[0], fill[1])  # Fill
     send_mouse(DIABLO_WIN, "LM", trans[0], trans[1])  # Transmute
-    sleep(0.1)
+    macro_sleep(0.1)
     send_mouse(DIABLO_WIN, "LM", bw[0], bw[1])  # Backwards
     send_mouse(DIABLO_WIN, "LM", fw[0], fw[1])  # Forth
     send_mouse(DIABLO_WIN, "RM", item[0], item[1])  # Item
@@ -183,8 +183,9 @@ class StopMacro(Exception):
 
 
 def macro_sleep(time):
-    for _ in range(int(time * 100)):
+    sleep_duration = time / 100
+    for _ in range(100):
         if keyboard.is_pressed("esc"):
             raise StopMacro
         else:
-            sleep(0.008)
+            sleep(sleep_duration)
