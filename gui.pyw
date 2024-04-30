@@ -464,7 +464,7 @@ if __name__ == "__main__":
     mw = windows.ModernWindow(win)
 
     stylesheet_path = os.path.join(wd, "./Style/frameless.qss")
-    icon_path = os.path.join(wd, "./Compiled/owl.ico")
+    icon_path = os.path.join(wd, "./Style/D3M.ico")
 
     with open(stylesheet_path) as stylesheet:
         mw.setStyleSheet(stylesheet.read())

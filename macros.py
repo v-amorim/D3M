@@ -71,26 +71,22 @@ def reforge():
 
 def upgrade_gem(empowered, choose_gem):
     upgrade = transform_coordinates(DIABLO_WIN, 280, 550)
+    gem_indices = 2 if empowered else 1
+
+    def enchant_loop(times):
+        for _ in range(times):
+            send_mouse(DIABLO_WIN, "LM", upgrade[0], upgrade[1])
+            sleep(1.55)
 
     if not choose_gem:
         first_gem = transform_coordinates(DIABLO_WIN, 100, 640)
         send_mouse(DIABLO_WIN, "LM", first_gem[0], first_gem[1])
-        sleep(0.1)
+        sleep(0.05)
+
     with contextlib.suppress(StopMacro):
-        if not empowered:
-            for i in range(4):
-                _extracted_from_upgrade_gem_(i, 1, upgrade)
-        else:
-            for i in range(5):
-                _extracted_from_upgrade_gem_(i, 2, upgrade)
-
-
-# TODO Rename this here and in `upgrade_gem`
-def _extracted_from_upgrade_gem_(i, arg1, upgrade):
-    if i == arg1:
+        enchant_loop(2)
         send_key(DIABLO_WIN, "t")
-    send_mouse(DIABLO_WIN, "LM", upgrade[0], upgrade[1])
-    macro_sleep(1.8)
+        enchant_loop(gem_indices + 1)
 
 
 def salvage(spare_columns):
