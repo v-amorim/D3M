@@ -6,7 +6,6 @@ Main selling points of this version: compact and only the tools I personally fou
 
 ![image](https://github.com/v-amorim/D3M/assets/629036/38ccd257-1295-4a90-a5ac-96e09b9d21f5)
 
-
 ## Macros
 
 All Macros are sent directly to Diablo III without using your physical mouse or keyboard.\
@@ -87,6 +86,14 @@ Reforges or Converts the Item in the top left corner.\
 
 ## Compile
 
+To run this code on python, you need to install the libs on `requirements.in`
+
 ```shell
-pyinstaller --noconfirm --onefile --console --icon "Style/D3M.ico" --add-data "Style;Style/" --add-data "Style/frameless.qss;."  "gui.pyw"
+python -m pip install -r requirements.in
+```
+
+### Generate .exe
+
+```powershell
+pyinstaller --noconfirm --onefile --console --icon "Style/D3M.ico" --add-data "Style;Style/" --add-data "Style/frameless.qss;." --distpath "output" --name "D3M" "gui.pyw" ; Remove-Item -Recurse -Force "build"
 ```
