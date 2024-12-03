@@ -1,9 +1,17 @@
+import winsound
+
 import keyboard
 import win32api
 import win32con
 import win32gui
 
 DIABLO_WIN = win32gui.FindWindow("D3 Main Window Class", "Diablo III")
+
+
+def play_sound(frequency):
+    frequency = frequency
+    duration = 100
+    winsound.Beep(frequency, duration)
 
 
 def key_to_hex(key):

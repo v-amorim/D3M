@@ -4,6 +4,7 @@ import keyboard
 from kthread import KThread
 
 import macros
+from resources import play_sound
 
 try:
     wd = sys._MEIPASS
@@ -26,7 +27,7 @@ class Listener:
         if hotkeys["lower_difficulty"]:
             keyboard.add_hotkey(hotkeys["lower_difficulty"], macros.lower_difficulty, suppress=True)
         if hotkeys["pause"]:
-            keyboard.add_hotkey(hotkeys["pause"], self.pause, suppress=True)
+            keyboard.add_hotkey(hotkeys["pause"], self.toggle_pause_resume, suppress=True)
         if hotkeys["port_a1"]:
             keyboard.add_hotkey(hotkeys["port_a1"], macros.port_town, args=(1,), suppress=True)
         if hotkeys["port_a2"]:
@@ -86,17 +87,20 @@ class Listener:
     def stop(self):
         keyboard.unhook_all()
 
-    def pause(self):
+    def toggle_pause_resume(self):
         if self.paused:
             keyboard.unhook_all()
             self.start()
             self.gui_paused.setChecked(False)
+            play_sound(200)
         else:
-            self._pause_actions()
+            self.activate_pause()
+            play_sound(100)
+            play_sound(100)
 
-    def _pause_actions(self):
+    def activate_pause(self):
         self.paused = True
         self.stop()
-        keyboard.add_hotkey(self.settings.hotkeys["pause"], self.pause, suppress=True)
+        keyboard.add_hotkey(self.settings.hotkeys["pause"], self.toggle_pause_resume, suppress=True)
         self.gui_paused.setChecked(True)
         macros.is_running = False
