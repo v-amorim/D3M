@@ -1,36 +1,35 @@
-from PyQt5.QtWidgets import (
-    QApplication,
-    QMainWindow,
-    QWidget,
-    QTabWidget,
-    QGridLayout,
-    QCheckBox,
-    QGroupBox,
-    QLabel,
-    QPushButton,
-    QRadioButton,
-    QMessageBox,
-    QListWidget,
-    QListWidgetItem,
-    QSpinBox,
-    QDesktopWidget,
-    QDialog,
-)
-from PyQt5 import QtCore
-from PyQt5.QtGui import QIcon
-import sys
 import os
 import string
-import keyboard
-import Style.windows as windows
-from resources import hotkey_delete_request, hotkey_is_numlock, nicer_text
-from resources import DIABLO_WIN
-import resources
+import sys
 from time import sleep
-from settings import Settings
-from listener import Listener
-from kthread import KThread
 
+import keyboard
+import resources
+from kthread import KThread
+from listener import Listener
+from PyQt5 import QtCore
+from PyQt5.QtGui import QIcon
+from PyQt5.QtWidgets import (
+    QApplication,
+    QCheckBox,
+    QDesktopWidget,
+    QDialog,
+    QGridLayout,
+    QGroupBox,
+    QLabel,
+    QListWidget,
+    QListWidgetItem,
+    QMainWindow,
+    QMessageBox,
+    QPushButton,
+    QRadioButton,
+    QSpinBox,
+    QTabWidget,
+    QWidget,
+)
+from resources import DIABLO_WIN, hotkey_delete_request, hotkey_is_numlock, nicer_text
+from settings import Settings
+from Style import windows
 
 try:
     wd = sys._MEIPASS

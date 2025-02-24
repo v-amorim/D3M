@@ -187,5 +187,4 @@ def macro_sleep(time):
     for _ in range(100):
         if keyboard.is_pressed("esc"):
             raise StopMacro
-        else:
-            sleep(sleep_duration)
+        sleep(sleep_duration)

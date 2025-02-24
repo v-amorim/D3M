@@ -11,11 +11,13 @@ from qtpy.QtWidgets import QWidget
 
 
 class WindowDragger(QWidget):
-    """Window dragger.
+    """
+    Window dragger.
 
     Args:
         window (QWidget): Associated window.
         parent (QWidget, optional): Parent widget.
+
     """
 
     doubleClicked = Signal()
@@ -43,11 +45,13 @@ class WindowDragger(QWidget):
 
 
 class ModernWindow(QWidget):
-    """Modern window.
+    """
+    Modern window.
 
     Args:
         w (QWidget): Main widget.
         parent (QWidget, optional): Parent widget.
+
     """
 
     def __init__(self, w, parent=None):
@@ -150,12 +154,13 @@ class ModernWindow(QWidget):
             event.setAccepted(self._w.isHidden())
 
     def setWindowTitle(self, title):
-        """Set window title.
+        """
+        Set window title.
 
         Args:
             title (str): Title.
-        """
 
+        """
         super().setWindowTitle(title)
         self.lblTitle.setText(title)
 
