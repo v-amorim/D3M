@@ -9,7 +9,6 @@ DIABLO_WIN = win32gui.FindWindow("D3 Main Window Class", "Diablo III")
 
 
 def play_sound(frequency):
-    frequency = frequency
     duration = 100
     winsound.Beep(frequency, duration)
 
@@ -196,11 +195,19 @@ def nicer_text(hotkey):
 
 
 def send_key(handle, key):
+    # Check if Diablo III is the active window
+    current_window = win32gui.GetForegroundWindow()
+    if current_window != handle:
+        return
     win32api.PostMessage(handle, win32con.WM_KEYDOWN, key_to_hex(key), 0)
     win32api.PostMessage(handle, win32con.WM_KEYUP, key_to_hex(key), 0)
 
 
 def send_mouse(handle, key, x, y):
+    # Check if Diablo III is the active window
+    current_window = win32gui.GetForegroundWindow()
+    if current_window != handle:
+        return
     lParam = y << 16 | x
     if key == "LM":
         win32api.PostMessage(handle, win32con.WM_LBUTTONDOWN, win32con.MK_LBUTTON, lParam)
