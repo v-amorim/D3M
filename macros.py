@@ -4,18 +4,22 @@ from time import sleep
 import keyboard
 import win32api
 import win32gui
-
-from resources import DIABLO_WIN
-from resources import kadala_item_by_name
-from resources import kadala_tab_by_name
-from resources import map_act_coords_by_act
-from resources import map_town_coords_by_act
-from resources import send_key
-from resources import send_mouse
-from resources import transform_coordinates
+from resources import (
+    DIABLO_WIN,
+    kadala_item_by_name,
+    kadala_tab_by_name,
+    map_act_coords_by_act,
+    map_town_coords_by_act,
+    send_key,
+    send_mouse,
+    transform_coordinates,
+)
 
 
 def cube_conv(speed, is_large_slot):
+    if not DIABLO_WIN:
+        return
+
     item = transform_coordinates(DIABLO_WIN, 1425, 580, rel="right")
     step = transform_coordinates(DIABLO_WIN, 50, 50)
     fill = transform_coordinates(DIABLO_WIN, 710, 840)
@@ -183,8 +187,8 @@ class StopMacro(Exception):
 
 
 def macro_sleep(time):
-    sleep_duration = time / 100
-    for _ in range(100):
+    end_time = time.time() + time
+    while time.time() < end_time:
         if keyboard.is_pressed("esc"):
             raise StopMacro
-        sleep(sleep_duration)
+        sleep(0.01)

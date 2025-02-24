@@ -1,9 +1,9 @@
 import sys
+from time import sleep
 
 import keyboard
-from kthread import KThread
-
 import macros
+from kthread import KThread
 from resources import play_sound
 
 try:
@@ -18,6 +18,11 @@ class Listener:
         self.thread = KThread(target=lambda: keyboard.wait("a+r+b+i+t+r+a+r+y"))
         self.thread.start()
         self.start()
+        self.thread = KThread(target=self._wait_for_exit)
+
+    def _wait_for_exit(self):
+        while True:
+            sleep(1)
 
     def start(self):
         self.paused = False

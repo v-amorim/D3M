@@ -49,6 +49,12 @@ class MainWindow(QMainWindow):
 
         self.status_thread = KThread(target=self.set_status)
         self.status_thread.start()
+        self.timer = QtCore.QTimer()
+        self.timer.timeout.connect(self.update_diablo_status)
+        self.timer.start(1000)
+
+    def update_diablo_status(self):
+        self.table_widget.diablo_hooked.setChecked(DIABLO_WIN)
 
     def locate_to_center(self):
         qtRectangle = self.frameGeometry()
@@ -62,6 +68,7 @@ class MainWindow(QMainWindow):
             sleep(1)
 
     def closeEvent(self, event):
+        self.timer.stop()
         self.settings.save()
         self.listener.thread.terminate()
         self.status_thread.terminate()
